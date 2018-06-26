@@ -57,6 +57,7 @@ cardDeck.forEach(function(card) {                 //forEach() loops through card
     card.addEventListener("click", function(event)  {
       let clickTarget = event.target;
       displayCard(clickTarget);
+      addOpenCard(clickTarget);
       // startTime();   //time starts accelerating after 3 or 4th click by 4 secs at a time, why?
     });
 });
@@ -66,4 +67,10 @@ cardDeck.forEach(function(card) {                 //forEach() loops through card
 function displayCard (clickTarget) {
      clickTarget.classList.toggle("open");
      clickTarget.classList.toggle("show");
+}
+
+// add card to array of open cards
+function addOpenCard(clickTarget) {
+    openCards.push(clickTarget);
+    console.log(openCards);  //This is a simple functionality test -> remove this line before submitting project
 }
