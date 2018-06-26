@@ -18,6 +18,12 @@ let moveCounter = document.querySelector(".moves");
 let stars = document.querySelectorAll(".stars li");
 let starCount = document.querySelector(".stars");
 
+//game timer variables
+let timer = document.querySelector("#timer");
+let second = 0;
+let minute = 0;
+let hour = 0;
+
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
