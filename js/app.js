@@ -1,7 +1,9 @@
 /*
  * Create a list that holds all of your cards
  */
-
+//array of all cards in the game
+let card = document.getElementsByClassName("card");
+let cardDeck = [...card];
 
 /*
  * Display the cards on the page
@@ -9,6 +11,12 @@
  *   - loop through each card and create its HTML
  *   - add each card's HTML to the page
  */
+ //Display the cards symbol
+ // toggle card function - display the card's symbol
+ function displayCard (clickTarget) {
+     clickTarget.classList.toggle("open");
+     clickTarget.classList.toggle("show");
+   }
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -36,3 +44,11 @@ function shuffle(array) {
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
+//setting up event listeners
+cardDeck.forEach(function(card) {                 //forEach() loops through cardDeck array and applies anonymous function to each card
+    card.addEventListener("click", function(event)  {
+      let clickTarget = event.target;
+      displayCard(clickTarget);
+      // startTime();   //time starts accelerating after 3 or 4th click by 4 secs at a time, why?
+    });
+});
