@@ -23,6 +23,25 @@ let timer = document.querySelector("#timer");
 let second = 0;
 let minute = 0;
 let hour = 0;
+let interval;
+
+
+//start game timer
+function startTime() {
+    interval = setInterval(function () {        //setInterval method calls a function or evaluates an expression at specified intervals (in milliseconds).
+    timer.innerHTML = minute + " mins " + second + " secs";
+    second++;
+    if (second === 60) {
+      minute++;
+      second = 0;
+    }
+    if (minute === 60) {
+      hour++;
+      console.log("This game should NOT take an hour!");
+      minute = 0;
+    }
+  }, 1000);
+}
 
 /*
  * Display the cards on the page
