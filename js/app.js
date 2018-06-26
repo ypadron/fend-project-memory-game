@@ -3,7 +3,11 @@
  */
 //array of all cards in the game
 let card = document.getElementsByClassName("card");
+
 let cardDeck = [...card];
+
+let deck = document.querySelector(".deck");
+let shuffledCards = shuffle(cardDeck);
 
 /*
  * Display the cards on the page
@@ -11,28 +15,36 @@ let cardDeck = [...card];
  *   - loop through each card and create its HTML
  *   - add each card's HTML to the page
  */
+ //shuffle the card deck
+ function shuffleCardDeck() {
+   console.log("everyday I'm shuffling!");
+   for(card of shuffledCards) {
+     deck.appendChild(card);
+   }
+ }
+shuffleCardDeck();
+
+ // Shuffle function from http://stackoverflow.com/a/2450976
+ function shuffle(array) {
+     var currentIndex = array.length, temporaryValue, randomIndex;
+
+     while (currentIndex !== 0) {
+         randomIndex = Math.floor(Math.random() * currentIndex);
+         currentIndex -= 1;
+         temporaryValue = array[currentIndex];
+         array[currentIndex] = array[randomIndex];
+         array[randomIndex] = temporaryValue;
+     }
+
+     return array;
+ }
+
  //Display the cards symbol
  // toggle card function - display the card's symbol
  function displayCard (clickTarget) {
      clickTarget.classList.toggle("open");
      clickTarget.classList.toggle("show");
    }
-
-// Shuffle function from http://stackoverflow.com/a/2450976
-function shuffle(array) {
-    var currentIndex = array.length, temporaryValue, randomIndex;
-
-    while (currentIndex !== 0) {
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex -= 1;
-        temporaryValue = array[currentIndex];
-        array[currentIndex] = array[randomIndex];
-        array[randomIndex] = temporaryValue;
-    }
-
-    return array;
-}
-
 
 /*
  * set up the event listener for a card. If a card is clicked:
