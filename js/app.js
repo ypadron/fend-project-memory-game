@@ -56,9 +56,15 @@ shuffleCardDeck();
 cardDeck.forEach(function(card) {                 //forEach() loops through cardDeck array and applies anonymous function to each card
     card.addEventListener("click", function(event)  {
       let clickTarget = event.target;
-      displayCard(clickTarget);
-      addOpenCard(clickTarget);
       // startTime();   //time starts accelerating after 3 or 4th click by 4 secs at a time, why?
+      if (!clickTarget.classList.contains("match") && openCards.length < 2 && !openCards.includes(clickTarget)) {
+        displayCard(clickTarget);
+        addOpenCard(clickTarget);
+        if (openCards.length === 2) {
+          console.log("2 cards only!");
+          isMatch();
+        }
+      }
     });
 });
 
@@ -74,3 +80,32 @@ function addOpenCard(clickTarget) {
     openCards.push(clickTarget);
     console.log(openCards);  //This is a simple functionality test -> remove this line before submitting project
 }
+
+//Do cards in openCards array match?
+function isMatch() {
+  if (openCards[0].firstElementChild.className === openCards[1].firstElementChild.className) {
+    doesMatch();
+  } else {
+    doesNotMatch();
+  }
+};
+
+//if cards in openCards array do match
+function doesMatch() {
+      openCards[0].classList.toggle("match");
+      openCards[1].classList.toggle("match");
+      matchedCards.push(openCards[0,1]);
+      console.log(matchedCards);
+      openCards = [];
+      console.log("Sweet Matching!");
+}
+
+//if cards in openCards array do not match
+function doesNotMatch() {
+      setTimeout(function() {
+      console.log("Better luck next time!");
+      displayCard(openCards[0]);
+      displayCard(openCards[1]);
+      openCards = [];
+    }, 1000);
+  }
