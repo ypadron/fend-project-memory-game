@@ -9,6 +9,9 @@ let cardDeck = [...card];
 let deck = document.querySelector(".deck");
 let shuffledCards = shuffle(cardDeck);
 
+let openCards = [];
+let matchedCards = [];
+
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -39,13 +42,6 @@ shuffleCardDeck();
      return array;
  }
 
- //Display the cards symbol
- // toggle card function - display the card's symbol
- function displayCard (clickTarget) {
-     clickTarget.classList.toggle("open");
-     clickTarget.classList.toggle("show");
-   }
-
 /*
  * set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)
@@ -64,3 +60,10 @@ cardDeck.forEach(function(card) {                 //forEach() loops through card
       // startTime();   //time starts accelerating after 3 or 4th click by 4 secs at a time, why?
     });
 });
+
+//Display the cards symbol
+// toggle card function - display the card's symbol
+function displayCard (clickTarget) {
+     clickTarget.classList.toggle("open");
+     clickTarget.classList.toggle("show");
+}
