@@ -15,6 +15,9 @@ let matchedCards = [];
 let moves = 0;
 let moveCounter = document.querySelector(".moves");
 
+let stars = document.querySelectorAll(".stars li");
+let starCount = document.querySelector(".stars");
+
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -115,21 +118,21 @@ function doesNotMatch() {
   }
 
 function countMoves() {
-    moves++;
-    moveCounter.innerHTML = moves;
-    if (moves === 1) {
-      // startTime(); //time does not randomly accelerate when startTime function is activated here, why?
-    }
+  moves++;
+  moveCounter.innerHTML = moves;
+  if (moves === 1) {
+    // startTime(); //time does not randomly accelerate when startTime function is activated here, why?
+  }
   if (moves > 10 && moves < 14) {
     for (i = 0; i < 3; i++) {
       if(i > 1) {
-        // stars[i].style.visibility = "collapse";
+        stars[i].style.visibility = "collapse";
       }
     }
   } else if (moves > 14) {
       for (i = 0; i < 3; i++) {
         if (i > 0) {
-          // stars[i].style.visibility = "collapse";
+          stars[i].style.visibility = "collapse";
         }
       }
     }
