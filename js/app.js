@@ -12,14 +12,17 @@ let shuffledCards = shuffle(cardDeck);
 let openCards = [];
 let matchedCards = [];
 
+let moves = 0;
+let moveCounter = document.querySelector(".moves");
+
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
  *   - loop through each card and create its HTML
  *   - add each card's HTML to the page
  */
- //shuffle the card deck
- function shuffleCardDeck() {
+//shuffle the card deck
+function shuffleCardDeck() {
    console.log("everyday I'm shuffling!");
    for(card of shuffledCards) {
      deck.appendChild(card);
@@ -27,8 +30,8 @@ let matchedCards = [];
  }
 shuffleCardDeck();
 
- // Shuffle function from http://stackoverflow.com/a/2450976
- function shuffle(array) {
+// Shuffle function from http://stackoverflow.com/a/2450976
+function shuffle(array) {
      var currentIndex = array.length, temporaryValue, randomIndex;
 
      while (currentIndex !== 0) {
@@ -63,6 +66,7 @@ cardDeck.forEach(function(card) {                 //forEach() loops through card
         if (openCards.length === 2) {
           console.log("2 cards only!");
           isMatch();
+          countMoves();
         }
       }
     });
@@ -108,4 +112,25 @@ function doesNotMatch() {
       displayCard(openCards[1]);
       openCards = [];
     }, 1000);
+  }
+
+function countMoves() {
+    moves++;
+    moveCounter.innerHTML = moves;
+    if (moves === 1) {
+      // startTime(); //time does not randomly accelerate when startTime function is activated here, why?
+    }
+  if (moves > 10 && moves < 14) {
+    for (i = 0; i < 3; i++) {
+      if(i > 1) {
+        // stars[i].style.visibility = "collapse";
+      }
+    }
+  } else if (moves > 14) {
+      for (i = 0; i < 3; i++) {
+        if (i > 0) {
+          // stars[i].style.visibility = "collapse";
+        }
+      }
+    }
   }
