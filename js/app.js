@@ -25,6 +25,12 @@ let minute = 0;
 let hour = 0;
 let interval;
 
+let restart = document.getElementsByClassName("restart")[0];
+
+let modal =  document.querySelector(".modal"); //document.getElementById("modal"); => does not work, why?
+let closeModal = document.querySelector(".close");
+let button = document.querySelector(".replay");
+
 
 //start game timer
 function startTime() {
@@ -109,6 +115,7 @@ cardDeck.forEach(function(card) {                 //forEach() loops through card
           console.log("2 cards only!");
           isMatch();
           countMoves();
+          gameEnd();
         }
       }
     });
