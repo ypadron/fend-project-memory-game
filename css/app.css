@@ -112,3 +112,34 @@ h1 {
     float: right;
     cursor: pointer;
 }
+
+/*
+*Styles for the modal
+*/
+.modal {
+  display: none; /*hide by default*/
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.6);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  border-radius: 10px;
+  width: 40%;
+  text-align: center;
+  overflow: auto;
+  display: block;
+}
+
+#final-stars {
+  display: inline-flex; /*keep*/
+  list-style: none; /*keep*/
+}
