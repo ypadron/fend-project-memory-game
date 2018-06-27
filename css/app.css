@@ -113,6 +113,10 @@ h1 {
     cursor: pointer;
 }
 
+.fa-star {
+      color: #daa520;
+}
+
 /*
 *Styles for the modal
 */
