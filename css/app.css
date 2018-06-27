@@ -111,6 +111,7 @@ h1 {
 .score-panel .restart {
     float: right;
     cursor: pointer;
+    color: steelblue;
 }
 
 .fa-star {
