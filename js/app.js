@@ -43,6 +43,20 @@ function startTime() {
   }, 1000);
 }
 
+//stop game timer
+function stopTime() {
+  clearInterval(interval);
+}
+
+//reset game timer
+function resetTime() {
+  clearInterval(interval);  //clearInterval stops the setInterval method (or close the window)
+  second = 0;
+  minute = 0;
+  hour = 0;
+  timer.innerHTML = minute + " mins " + second + " secs";
+}
+
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
