@@ -27,10 +27,14 @@ let interval;
 
 let restart = document.getElementsByClassName("restart")[0];
 
+//congratulations gameEnd modal
 let modal =  document.querySelector(".modal"); //document.getElementById("modal"); => does not work, why?
-let closeModal = document.querySelector(".close");
-let button = document.querySelector(".replay");
 
+//get span that closes the modal
+let closeModal = document.querySelector(".close");
+
+//replay button in modal
+let button = document.querySelector(".replay");
 
 //start game timer
 function startTime() {
@@ -63,6 +67,7 @@ function resetTime() {
   timer.innerHTML = minute + " mins " + second + " secs";
 }
 
+//restart icon in score panel
 restart.onclick = function() {
   resetGame();
 }
@@ -167,6 +172,7 @@ function doesNotMatch() {
     }, 1000);
   }
 
+//count number of moves and star visibility
 function countMoves() {
   moves++;
   moveCounter.innerHTML = moves;
@@ -205,6 +211,7 @@ function gameEnd () {
   }
 }
 
+//clear game board and reset everything
 function resetGame() {
   shuffleCardDeck();
 
@@ -224,6 +231,7 @@ function resetGame() {
 }
 
 //get span that closes the modal
+//TODO Compare with closeModal variable. Eliminate one of them
 let modalClose = document.getElementsByClassName("close")[0];
 
 //user clicks on <span> X, to close the modal
