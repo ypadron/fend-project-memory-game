@@ -176,3 +176,20 @@ function countMoves() {
       }
     }
   }
+
+//stop timer and end game when all cards are matched
+function gameEnd () {
+    if (matchedCards.length === 8 ) {
+      stopTime();
+      finalTime = "Total time " + timer.innerHTML;
+      finalMoves = "You finished the game in " + moveCounter.innerHTML + " moves";
+      finalStars = "Star rating: " + " " + starCount.innerHTML;
+      //
+      document.getElementById("final-moves").innerHTML = finalMoves;
+      document.getElementById("final-time").innerHTML = finalTime;
+      document.getElementById("final-stars").innerHTML = finalStars;
+      //Show final stats
+      modal.classList.toggle("show");
+      modal.style.display = "block";
+    }
+  }
