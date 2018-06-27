@@ -186,17 +186,50 @@ function countMoves() {
 
 //stop timer and end game when all cards are matched
 function gameEnd () {
-    if (matchedCards.length === 8 ) {
-      stopTime();
-      finalTime = "Total time " + timer.innerHTML;
-      finalMoves = "You finished the game in " + moveCounter.innerHTML + " moves";
-      finalStars = "Star rating: " + " " + starCount.innerHTML;
-      //
-      document.getElementById("final-moves").innerHTML = finalMoves;
-      document.getElementById("final-time").innerHTML = finalTime;
-      document.getElementById("final-stars").innerHTML = finalStars;
-      //Show final stats
-      modal.classList.toggle("show");
-      modal.style.display = "block";
-    }
+  if (matchedCards.length === 8 ) {
+    stopTime();
+    finalTime = "Total time " + timer.innerHTML;
+    finalMoves = "You finished the game in " + moveCounter.innerHTML + " moves";
+    finalStars = "Star rating: " + " " + starCount.innerHTML;
+    //
+    document.getElementById("final-moves").innerHTML = finalMoves;
+    document.getElementById("final-time").innerHTML = finalTime;
+    document.getElementById("final-stars").innerHTML = finalStars;
+    //Show final stats
+    modal.classList.toggle("show");
+    modal.style.display = "block";
   }
+}
+
+function resetGame() {
+  shuffleCardDeck();
+
+  for (card of shuffledCards) {
+    card.classList.remove("match", "open", "show");
+  }
+
+  matchedCards = [];
+  resetTime();
+  moves = 0;
+  moveCounter.innerHTML = moves;
+  //reset stars
+  for (i = 0; i < 3; i++) {
+    stars[i].style.visibility = "visible";
+  }
+  modal.style.display = "none";
+}
+
+//get span that closes the modal
+let modalClose = document.getElementsByClassName("close")[0];
+
+//user clicks on <span> X, to close the modal
+modalClose.onclick = function() {
+  modal.style.display = "none";
+  resetGame();
+  // clearInterval(interval);
+}
+
+//close modal and reset game when user clicks on replay button
+button.onclick = function() {
+  resetGame();
+}
