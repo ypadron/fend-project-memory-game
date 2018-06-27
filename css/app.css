@@ -143,3 +143,31 @@ h1 {
   display: inline-flex; /*keep*/
   list-style: none; /*keep*/
 }
+
+/* Close modal */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 48px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: steelblue;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/*Replay button*/
+button {
+  display: block;
+  width:  250px;
+  border-radius: 5px;
+  margin: auto;
+  font-size: 16px;
+  padding: 16px;
+  background-color: steelblue;
+  color: #fff;
+  cursor: pointer;
+}
