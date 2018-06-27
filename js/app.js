@@ -146,7 +146,7 @@ function countMoves() {
   moves++;
   moveCounter.innerHTML = moves;
   if (moves === 1) {
-    // startTime(); //time does not randomly accelerate when startTime function is activated here, why?
+    startTime(); //time does not randomly accelerate when startTime function is activated here, why?
   }
   if (moves > 10 && moves < 14) {
     for (i = 0; i < 3; i++) {
