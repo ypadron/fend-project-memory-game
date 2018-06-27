@@ -36,6 +36,9 @@ let closeModal = document.querySelector(".close");
 //replay button in modal
 let button = document.querySelector(".replay");
 
+//reset game when the document loads
+document.body.onload = resetGame;
+
 //start game timer
 function startTime() {
     interval = setInterval(function () {        //setInterval method calls a function or evaluates an expression at specified intervals (in milliseconds).
