@@ -167,10 +167,14 @@ function doesMatch() {
 
 //if cards in openCards array do not match
 function doesNotMatch() {
+  openCards[0].classList.toggle("no-match");
+  openCards[1].classList.toggle("no-match");
       setTimeout(function() {
       console.log("Better luck next time!");
       displayCard(openCards[0]);
       displayCard(openCards[1]);
+      openCards[0].classList.toggle("no-match");
+      openCards[1].classList.toggle("no-match");
       openCards = [];
     }, 1000);
   }
