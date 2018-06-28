@@ -1,14 +1,15 @@
 /*
  * Create a list that holds all of your cards
  */
-//array of all cards in the game
 let card = document.getElementsByClassName("card");
 
+//array of all cards in the game
 let cardDeck = [...card];
 
 let deck = document.querySelector(".deck");
 let shuffledCards = shuffle(cardDeck);
 
+//arrays to hold open and matched cards
 let openCards = [];
 let matchedCards = [];
 
@@ -28,7 +29,7 @@ let interval;
 let restart = document.getElementsByClassName("restart")[0];
 
 //congratulations gameEnd modal
-let modal =  document.querySelector(".modal"); //document.getElementById("modal"); => does not work, why?
+let modal =  document.querySelector(".modal");
 
 //get span that closes the modal
 let closeModal = document.querySelector(".close");
@@ -41,7 +42,8 @@ document.body.onload = resetGame;
 
 //start game timer
 function startTime() {
-    interval = setInterval(function () {        //setInterval method calls a function or evaluates an expression at specified intervals (in milliseconds).
+    //setInterval method calls a function or evaluates an expression at specified intervals (milliseconds)
+    interval = setInterval(function () {
     timer.innerHTML = minute + " mins " + second + " secs";
     second++;
     if (second === 60) {
@@ -88,7 +90,6 @@ function shuffleCardDeck() {
      deck.appendChild(card);
    }
  }
-shuffleCardDeck();
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -116,7 +117,8 @@ function shuffle(array) {
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
 //setting up event listeners
-cardDeck.forEach(function(card) {                 //forEach() loops through cardDeck array and applies anonymous function to each card
+//forEach() loops through cardDeck array and applies anonymous function to each card
+cardDeck.forEach(function(card) {
     card.addEventListener("click", function(event)  {
       let clickTarget = event.target;
       // startTime();   //time starts accelerating after 3 or 4th click by 4 secs at a time, why?
@@ -124,7 +126,6 @@ cardDeck.forEach(function(card) {                 //forEach() loops through card
         displayCard(clickTarget);
         addOpenCard(clickTarget);
         if (openCards.length === 2) {
-          console.log("2 cards only!");
           isMatch();
           countMoves();
           gameEnd();
@@ -143,7 +144,6 @@ function displayCard (clickTarget) {
 // add card to array of open cards
 function addOpenCard(clickTarget) {
     openCards.push(clickTarget);
-    console.log(openCards);  //This is a simple functionality test -> remove this line before submitting project
 }
 
 //Do cards in openCards array match?
@@ -155,14 +155,12 @@ function isMatch() {
   }
 };
 
-//if cards in openCards array do match
+//if cards in openCards array match => push matched cards into matchedCards array
 function doesMatch() {
       openCards[0].classList.toggle("match");
       openCards[1].classList.toggle("match");
       matchedCards.push(openCards[0,1]);
-      console.log(matchedCards);
       openCards = [];
-      console.log("Sweet Matching!");
 }
 
 //if cards in openCards array do not match
@@ -170,13 +168,12 @@ function doesNotMatch() {
   openCards[0].classList.toggle("no-match");
   openCards[1].classList.toggle("no-match");
       setTimeout(function() {
-      console.log("Better luck next time!");
-      displayCard(openCards[0]);
-      displayCard(openCards[1]);
-      openCards[0].classList.toggle("no-match");
-      openCards[1].classList.toggle("no-match");
-      openCards = [];
-    }, 1000);
+        displayCard(openCards[0]);
+        displayCard(openCards[1]);
+        openCards[0].classList.toggle("no-match");
+        openCards[1].classList.toggle("no-match");
+        openCards = [];
+      }, 1000);
   }
 
 //count number of moves and star visibility
@@ -245,7 +242,6 @@ let modalClose = document.getElementsByClassName("close")[0];
 modalClose.onclick = function() {
   modal.style.display = "none";
   resetGame();
-  // clearInterval(interval);
 }
 
 //close modal and reset game when user clicks on replay button
