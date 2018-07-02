@@ -1,13 +1,20 @@
 /*
  * Create a list that holds all of your cards
  */
+ //HTMLCollection(16) of all cards => it looks like an array
 let card = document.getElementsByClassName("card");
+console.log(card);
 
-//array of all cards in the game
+//array of all cards - USE THE ARRAY??
 let cardDeck = [...card];
+console.log(cardDeck);
 
+//unordered list of all cards => ul of li's each containing an item which is the icon
 let deck = document.querySelector(".deck");
+console.log(deck);
+
 let shuffledCards = shuffle(cardDeck);
+console.log(shuffledCards);
 
 //arrays to hold open and matched cards
 let openCards = [];
@@ -26,19 +33,24 @@ let minute = 0;
 let hour = 0;
 let interval;
 
-let restart = document.getElementsByClassName("restart")[0];
+//repeat icon in the score panel inside the restart <div>
+// let restart = document.getElementsByClassName("restart");
+let restart = document.querySelector(".fa-repeat");
+
 
 //congratulations gameEnd modal
 let modal =  document.querySelector(".modal");
 
-//get span that closes the modal
+//get span that closes the modal => grabs the X
 let closeModal = document.querySelector(".close");
 
 //replay button in modal
 let button = document.querySelector(".replay");
 
 //reset game when the document loads
-document.body.onload = resetGame;
+document.body.onload = resetGame();
+
+//getElementsByClassName vs querySelector && querySelectorAll
 
 //start game timer
 function startTime() {
@@ -72,11 +84,6 @@ function resetTime() {
   timer.innerHTML = minute + " mins " + second + " secs";
 }
 
-//restart icon in score panel
-restart.onclick = function() {
-  resetGame();
-}
-
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -85,11 +92,12 @@ restart.onclick = function() {
  */
 //shuffle the card deck
 function shuffleCardDeck() {
-   console.log("everyday I'm shuffling!");
-   for(card of shuffledCards) {
-     deck.appendChild(card);
-   }
- }
+  for(card of shuffledCards) {
+    //cannot use =>  cardDeck. Uncaught TypeError: cardDeck.appendChild is not a function
+    deck.appendChild(card);
+    }
+    console.log("everyday I'm shuffling!");
+  }
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -121,7 +129,8 @@ function shuffle(array) {
 cardDeck.forEach(function(card) {
     card.addEventListener("click", function(event)  {
       let clickTarget = event.target;
-      // startTime();   //time starts accelerating after 3 or 4th click by 4 secs at a time, why?
+      //time starts accelerating after 3rd click by 2 secs at a time, why?
+      // startTime();
       if (!clickTarget.classList.contains("match") && openCards.length < 2 && !openCards.includes(clickTarget)) {
         displayCard(clickTarget);
         addOpenCard(clickTarget);
@@ -181,7 +190,8 @@ function countMoves() {
   moves++;
   moveCounter.innerHTML = moves;
   if (moves === 1) {
-    startTime(); //time does not randomly accelerate when startTime function is activated here, why?
+    //time does not accelerate when startTime function is activated here, why?
+    startTime();
   }
   if (moves > 10 && moves < 14) {
     for (i = 0; i < 3; i++) {
@@ -199,7 +209,7 @@ function countMoves() {
   }
 
 //stop timer and end game when all cards are matched
-function gameEnd () {
+function gameEnd() {
   if (matchedCards.length === 8 ) {
     stopTime();
     finalTime = "Total time " + timer.innerHTML;
@@ -218,17 +228,13 @@ function gameEnd () {
 //clear game board and reset everything
 function resetGame() {
   shuffleCardDeck();
-
-  for (card of shuffledCards) {
-    card.classList.remove("match", "open", "show");
-  }
-
-  matchedCards = [];
   resetTime();
   moves = 0;
   moveCounter.innerHTML = moves;
-  //reset stars
-  for (i = 0; i < 3; i++) {
+  matchedCards = [];
+  for (card of shuffledCards) {
+    card.classList.remove("match", "open", "show", "no-match");
+  } for (i = 0; i < 3; i++) { //reset stars
     stars[i].style.visibility = "visible";
   }
   modal.style.display = "none";
@@ -236,15 +242,19 @@ function resetGame() {
 
 //get span that closes the modal
 //TODO Compare with closeModal variable. Eliminate one of them
-let modalClose = document.getElementsByClassName("close")[0];
+let modalClose = document.getElementsByClassName("close");
 
-//user clicks on <span> X, to close the modal
-modalClose.onclick = function() {
-  modal.style.display = "none";
-  resetGame();
-}
+//restart icon in score panel resets game
+// => why did only shuffleCardDeck() stop working - inside resetGame() - here but not when the document loads?
+restart.addEventListener("click", resetGame, false);
+
+//user clicks on <span> X, to close the modal & reset the game
+// => why did only shuffleCardDeck() stop working - inside resetGame() - here but not when the document loads?
+closeModal.addEventListener("click", resetGame, false);
 
 //close modal and reset game when user clicks on replay button
+// => why did only shuffleCardDeck() stop working - inside resetGame() - here but not when the document loads?
 button.onclick = function() {
   resetGame();
+  modal.style.display = "none";
 }

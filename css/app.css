@@ -75,7 +75,7 @@ h1 {
     font-size: 33px;
 }
 
-.card.no-match {
+.deck .card.no-match {
   animation: shake 0.5s;
   animation-iteration-count: 1;
 }
