@@ -92,6 +92,7 @@ function resetTime() {
  */
 //shuffle the card deck
 function shuffleCardDeck() {
+  let shuffledCards = shuffle(cardDeck);
   for(card of shuffledCards) {
     //cannot use =>  cardDeck. Uncaught TypeError: cardDeck.appendChild is not a function
     deck.appendChild(card);
