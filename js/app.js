@@ -170,6 +170,14 @@ function doesMatch() {
       openCards[0].classList.toggle("match");
       openCards[1].classList.toggle("match");
       matchedCards.push(openCards[0,1]);
+      cardDeck.forEach(function(card) {
+          card.removeEventListener("click", function(event)  {
+            let clickTarget = event.target;
+            //time starts accelerating after 3rd click by 2 secs at a time, why?
+            // startTime();
+            addOpenCard(clickTarget);
+          });
+      });
       openCards = [];
 }
 
