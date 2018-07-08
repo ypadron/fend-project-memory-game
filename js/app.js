@@ -254,15 +254,12 @@ function resetGame() {
 let modalClose = document.getElementsByClassName("close");
 
 //restart icon in score panel resets game
-// => why did only shuffleCardDeck() stop working - inside resetGame() - here but not when the document loads?
 restart.addEventListener("click", resetGame, false);
 
 //user clicks on <span> X, to close the modal & reset the game
-// => why did only shuffleCardDeck() stop working - inside resetGame() - here but not when the document loads?
 closeModal.addEventListener("click", resetGame, false);
 
 //close modal and reset game when user clicks on replay button
-// => why did only shuffleCardDeck() stop working - inside resetGame() - here but not when the document loads?
 button.onclick = function() {
   resetGame();
   modal.style.display = "none";
