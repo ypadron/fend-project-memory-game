@@ -169,7 +169,7 @@ function isMatch() {
 function doesMatch() {
       openCards[0].classList.toggle("match");
       openCards[1].classList.toggle("match");
-      matchedCards.push(openCards[0,1]);
+      matchedCards.push.apply(matchedCards, openCards);
       cardDeck.forEach(function(card) {
           card.removeEventListener("click", function(event)  {
             let clickTarget = event.target;
