@@ -167,8 +167,8 @@ function isMatch() {
 
 //if cards in openCards array match => push matched cards into matchedCards array
 function doesMatch() {
-      openCards[0].classList.toggle("match");
-      openCards[1].classList.toggle("match");
+      openCards[0].classList.toggle("match", true);
+      openCards[1].classList.toggle("match", true);
       matchedCards.push.apply(matchedCards, openCards);
       cardDeck.forEach(function(card) {
           card.removeEventListener("click", function(event)  {
@@ -219,7 +219,7 @@ function countMoves() {
 
 //stop timer and end game when all cards are matched
 function gameEnd() {
-  if (matchedCards.length === 8 ) {
+  if (matchedCards.length === 16 ) {
     stopTime();
     finalTime = "Total time " + timer.innerHTML;
     finalMoves = "You finished the game in " + moveCounter.innerHTML + " moves";
