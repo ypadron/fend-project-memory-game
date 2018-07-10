@@ -3,18 +3,18 @@
  */
  //HTMLCollection(16) of all cards => it looks like an array
 let card = document.getElementsByClassName("card");
-console.log(card);
+// console.log(card);
 
 //array of all cards - USE THE ARRAY??
 let cardDeck = [...card];
-console.log(cardDeck);
+// console.log(cardDeck);
 
 //unordered list of all cards => ul of li's each containing an item which is the icon
 let deck = document.querySelector(".deck");
-console.log(deck);
+// console.log(deck);
 
 let shuffledCards = shuffle(cardDeck);
-console.log(shuffledCards);
+// console.log(shuffledCards);
 
 //arrays to hold open and matched cards
 let openCards = [];
@@ -71,16 +71,16 @@ function startTime() {
 
 //stop game timer
 function stopTime() {
-  clearInterval(interval);
+    clearInterval(interval);
 }
 
 //reset game timer
 function resetTime() {
-  clearInterval(interval);  //clearInterval stops the setInterval method (or close the window)
-  second = 0;
-  minute = 0;
-  hour = 0;
-  timer.innerHTML = minute + " mins " + second + " secs";
+    clearInterval(interval);  //clearInterval stops the setInterval method (or close the window)
+    second = 0;
+    minute = 0;
+    hour = 0;
+    timer.innerHTML = minute + " mins " + second + " secs";
 }
 
 /*
@@ -91,12 +91,12 @@ function resetTime() {
  */
 //shuffle the card deck
 function shuffleCardDeck() {
-  let shuffledCards = shuffle(cardDeck);
-  for(card of shuffledCards) {
-    //cannot use =>  cardDeck. Uncaught TypeError: cardDeck.appendChild is not a function
-    deck.appendChild(card);
-    }
-    console.log("everyday I'm shuffling!");
+    let shuffledCards = shuffle(cardDeck);
+      for(card of shuffledCards) {
+        //cannot use =>  cardDeck. Uncaught TypeError: cardDeck.appendChild is not a function
+        deck.appendChild(card);
+      }
+      console.log("everyday I'm shuffling!");
   }
 
 // Shuffle function from http://stackoverflow.com/a/2450976
@@ -134,10 +134,10 @@ cardDeck.forEach(function(card) {
       if (!clickTarget.classList.contains("match") && openCards.length < 2 && !openCards.includes(clickTarget)) {
         displayCard(clickTarget);
         addOpenCard(clickTarget);
-        if (openCards.length === 2) {
-          isMatch();
-          countMoves();
-          gameEnd();
+      if (openCards.length === 2) {
+        isMatch();
+        countMoves();
+        gameEnd();
         }
       }
     });
@@ -157,10 +157,10 @@ function addOpenCard(clickTarget) {
 
 //Do cards in openCards array match?
 function isMatch() {
-  if (openCards[0].firstElementChild.className === openCards[1].firstElementChild.className) {
-    doesMatch();
+    if (openCards[0].firstElementChild.className === openCards[1].firstElementChild.className) {
+      doesMatch();
   } else {
-    doesNotMatch();
+      doesNotMatch();
   }
 };
 
@@ -189,8 +189,8 @@ function doesMatch() {
 
 //if cards in openCards array do not match
 function doesNotMatch() {
-  openCards[0].classList.toggle("no-match");
-  openCards[1].classList.toggle("no-match");
+    openCards[0].classList.toggle("no-match");
+    openCards[1].classList.toggle("no-match");
       setTimeout(function() {
         displayCard(openCards[0]);
         displayCard(openCards[1]);
@@ -202,16 +202,16 @@ function doesNotMatch() {
 
 //count number of moves and star visibility
 function countMoves() {
-  moves++;
-  moveCounter.innerHTML = moves;
-  if (moves === 1) {
-    //time does not accelerate when startTime function is activated here, why?
-    startTime();
+    moves++;
+    moveCounter.innerHTML = moves;
+    if (moves === 1) {
+      //time does not accelerate when startTime function is activated here, why?
+      startTime();
   }
-  if (moves > 10 && moves < 14) {
-    for (i = 0; i < 3; i++) {
-      if(i > 1) {
-        stars[i].style.visibility = "collapse";
+    if (moves > 10 && moves < 14) {
+      for (i = 0; i < 3; i++) {
+        if(i > 1) {
+          stars[i].style.visibility = "collapse";
       }
     }
   } else if (moves > 14) {
@@ -225,34 +225,34 @@ function countMoves() {
 
 //stop timer and end game when all cards are matched
 function gameEnd() {
-  if (matchedCards.length === 16 ) {
-    stopTime();
-    let finalTime = "Total time " + timer.innerHTML;
-    let finalMoves = "You finished the game in " + moveCounter.innerHTML + " moves";
-    let finalStars = "Star rating: " + " " + starCount.innerHTML;
-    //
-    document.getElementById("final-moves").innerHTML = finalMoves;
-    document.getElementById("final-time").innerHTML = finalTime;
-    document.getElementById("final-stars").innerHTML = finalStars;
-    //Show final stats
-    modal.classList.toggle("show");
-    modal.style.display = "block";
+    if (matchedCards.length === 16 ) {
+      stopTime();
+      let finalTime = "Total time " + timer.innerHTML;
+      let finalMoves = "You finished the game in " + moveCounter.innerHTML + " moves";
+      let finalStars = "Star rating: " + " " + starCount.innerHTML;
+      //
+      document.getElementById("final-moves").innerHTML = finalMoves;
+      document.getElementById("final-time").innerHTML = finalTime;
+      document.getElementById("final-stars").innerHTML = finalStars;
+      //Show final stats
+      modal.classList.toggle("show");
+      modal.style.display = "block";
   }
 }
 
 //clear game board and reset everything
 function resetGame() {
-  shuffleCardDeck();
-  resetTime();
-  moves = 0;
-  moveCounter.innerHTML = moves;
-  matchedCards = [];
-  for (card of shuffledCards) {
-    card.classList.remove("match", "open", "show", "no-match", "disabled");
+    shuffleCardDeck();
+    resetTime();
+    moves = 0;
+    moveCounter.innerHTML = moves;
+    matchedCards = [];
+    for (card of shuffledCards) {
+      card.classList.remove("match", "open", "show", "no-match", "disabled");
   } for (i = 0; i < 3; i++) { //reset stars
-    stars[i].style.visibility = "visible";
+      stars[i].style.visibility = "visible";
   }
-  modal.style.display = "none";
+    modal.style.display = "none";
 }
 
 //get span that closes the modal
