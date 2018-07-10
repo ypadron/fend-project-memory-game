@@ -1,4 +1,11 @@
 /*
+I used a variety of sources to get started on The Memory Game project, most of them are listed
+on this [resource] (https://www.diigo.com/outliner/fii42b/Udacity-Memory-Game-Project?key=dwj0y5x9cw)
+taken from the FEND Slack channel. Matthew Cranford's walkthrough was particularly helpful as
+was Sandra Israel-Ovirih's Scotch.io [tutorial] (https://scotch.io/tutorials/how-to-build-a-memory-matching-game-in-javascript).
+*/
+
+/*
  * Create a list that holds all of your cards
  */
  //HTMLCollection(16) of all cards => it looks like an array
@@ -131,7 +138,7 @@ cardDeck.forEach(function(card) {
       let clickTarget = event.target;
       //time starts accelerating after 3rd click by 2 secs at a time, why?
       // startTime();
-      if (!clickTarget.classList.contains("match") && openCards.length < 2 && !openCards.includes(clickTarget)) {
+      if (!clickTarget.classList.contains("match") && openCards.length < 2) {
         displayCard(clickTarget);
         addOpenCard(clickTarget);
       if (openCards.length === 2) {
