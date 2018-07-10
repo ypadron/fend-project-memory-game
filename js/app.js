@@ -37,7 +37,6 @@ let interval;
 // let restart = document.getElementsByClassName("restart");
 let restart = document.querySelector(".fa-repeat");
 
-
 //congratulations gameEnd modal
 let modal =  document.querySelector(".modal");
 
@@ -228,9 +227,9 @@ function countMoves() {
 function gameEnd() {
   if (matchedCards.length === 16 ) {
     stopTime();
-    finalTime = "Total time " + timer.innerHTML;
-    finalMoves = "You finished the game in " + moveCounter.innerHTML + " moves";
-    finalStars = "Star rating: " + " " + starCount.innerHTML;
+    let finalTime = "Total time " + timer.innerHTML;
+    let finalMoves = "You finished the game in " + moveCounter.innerHTML + " moves";
+    let finalStars = "Star rating: " + " " + starCount.innerHTML;
     //
     document.getElementById("final-moves").innerHTML = finalMoves;
     document.getElementById("final-time").innerHTML = finalTime;
