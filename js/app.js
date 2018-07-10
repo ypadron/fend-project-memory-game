@@ -248,7 +248,7 @@ function resetGame() {
   moveCounter.innerHTML = moves;
   matchedCards = [];
   for (card of shuffledCards) {
-    card.classList.remove("match", "open", "show", "no-match");
+    card.classList.remove("match", "open", "show", "no-match", "disabled");
   } for (i = 0; i < 3; i++) { //reset stars
     stars[i].style.visibility = "visible";
   }
