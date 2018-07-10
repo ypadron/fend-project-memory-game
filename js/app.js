@@ -167,18 +167,25 @@ function isMatch() {
 
 //if cards in openCards array match => push matched cards into matchedCards array
 function doesMatch() {
-      openCards[0].classList.toggle("match", true);
-      openCards[1].classList.toggle("match", true);
-      matchedCards.push.apply(matchedCards, openCards);
-      cardDeck.forEach(function(card) {
+    openCards[0].childNodes[1].classList.toggle("match", true);
+    openCards[1].childNodes[1].classList.toggle("match", true);
+    openCards[0].classList.toggle("match", true);
+    openCards[1].classList.toggle("match", true);
+    openCards[0].childNodes[1].setAttribute("disabled", true);
+    openCards[1].childNodes[1].setAttribute("disabled", true);
+    openCards[0].setAttribute("disabled", true);
+    openCards[1].setAttribute("disabled", true);
+    matchedCards.push.apply(matchedCards, openCards);
+    openCards = [];
+    //TODO Why isn't removeEventListener() working?
+    /*cardDeck.forEach(function(card) {
           card.removeEventListener("click", function(event)  {
             let clickTarget = event.target;
             //time starts accelerating after 3rd click by 2 secs at a time, why?
             // startTime();
             addOpenCard(clickTarget);
           });
-      });
-      openCards = [];
+      });*/
 }
 
 //if cards in openCards array do not match
