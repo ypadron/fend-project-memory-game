@@ -254,6 +254,7 @@ function resetGame() {
     moves = 0;
     moveCounter.innerHTML = moves;
     matchedCards = [];
+    openCards = [];
     for (card of shuffledCards) {
       card.classList.remove("match", "open", "show", "no-match", "disabled");
   } for (i = 0; i < 3; i++) { //reset stars
