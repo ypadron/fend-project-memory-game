@@ -10,8 +10,8 @@ Front End Web Developer Nanodegree Program
 ## Description
 
 Complete browser-based card matching game built with Vanilla JS.
-1. Flip over two hidden cards at a time to find the ones that match.
-2. When all pairs are matched, you win.
+1. Flip over hidden cards, two at a time, to find the ones that match.
+2. When all 8 pairs are matched, you win.
 3. Concentrate! You're being timed.
 
 
